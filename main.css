@@ -1,0 +1,66 @@
+input {
+    position:absolute;
+    opacity: 0;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    float: left;
+    outline: 2px solid #000;
+    background: white;
+    color: transparent;
+    font-size: 50px;
+    line-height: 1;
+    overflow: hidden;
+}
+
+label:nth-of-type(3n + 1) {
+    clear: left
+}
+
+label:before {
+    color: black;
+}
+
+input:checked + label:before {
+    content: 'X';
+    color: green;
+}
+
+input:not(:checked) + label:before {
+    content: '0';
+    color: blue;
+}
+
+input:indeterminate + label:before {
+    content: '';
+}
+
+p {
+    clear: both;
+    font: 150% sans-serif;
+}
+
+input:nth-of-type(3n+1):checked + label + input:checked + label + input:checked ~ p:after,
+#a1:checked ~ #a11:checked ~ #a21:checked ~ p:after,
+#a2:checked ~ #a12:checked ~ #a22:checked ~ p:after,
+#a3:checked ~ #a13:checked ~ #a23:checked ~ p:after,
+#a1:checked ~ #a12:checked ~ #a23:checked ~ p:after,
+#a3:checked ~ #a12:checked ~ #a21:checked ~ p:after {
+    content: 'Победил X, нолик не расстраивайся, в следущий раз будь внимательней!';
+    color: green;
+}
+input:nth-of-type(3n+1):not(:checked):not(:indeterminate) + label + input:not(:checked):not(:indeterminate) + label + input:not(:checked):not(:indeterminate) ~ p:after,
+#a1:not(:checked):not(:indeterminate) ~ #a11:not(:checked):not(:indeterminate) ~ #a21:not(:checked):not(:indeterminate) ~ p:after,
+#a2:not(:checked):not(:indeterminate) ~ #a12:not(:checked):not(:indeterminate) ~ #a22:not(:checked):not(:indeterminate) ~ p:after,
+#a3:not(:checked):not(:indeterminate) ~ #a13:not(:checked):not(:indeterminate) ~ #a23:not(:checked):not(:indeterminate) ~ p:after,
+#a1:not(:checked):not(:indeterminate) ~ #a12:not(:checked):not(:indeterminate) ~ #a23:not(:checked):not(:indeterminate) ~ p:after,
+#a3:not(:checked):not(:indeterminate) ~ #a12:not(:checked):not(:indeterminate) ~ #a21:not(:checked):not(:indeterminate) ~ p:after{
+    content: 'Победил 0, крестик не расстраивайся, в следущий раз будь внимательней!';
+    color: blue;
+}
